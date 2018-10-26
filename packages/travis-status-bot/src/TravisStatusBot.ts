@@ -96,7 +96,7 @@ class MainHandler extends MessageHandler {
           const date = incident.created_at ? `${this.formatDate(incident.created_at)}: ` : '';
           const link = incident.shortlink ? ` (${incident.shortlink})` : '';
           return (result += `- ${date}"${incident.name}"${link}\n`);
-        }, response);
+        }, '');
       } else {
         response = 'ℹ️ No incidents found.';
       }
