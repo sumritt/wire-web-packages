@@ -34,3 +34,9 @@ export const WEBAPP_SUPPORTED_BROWSERS = {
   [BROWSER.ELECTRON]: {major: 1, minor: 6},
   [BROWSER.OPERA]: {major: 43, minor: 0},
 };
+
+export const WEBSITE_DEFAULT_LANGUAGE = 'en';
+export const WEBSITE_SUPPORTED_LANGUAGES = [WEBSITE_DEFAULT_LANGUAGE, 'de'];
+
+export const TEAMS_DEFAULT_LANGUAGE = 'en';
+export const TEAMS_SUPPORTED_LANGUAGES = [TEAMS_DEFAULT_LANGUAGE, 'de'];

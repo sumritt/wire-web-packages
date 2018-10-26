@@ -42,7 +42,7 @@ import {
   PayloadBundleState,
   PayloadBundleType,
   ReactionType,
-} from '../conversation/root';
+} from '../conversation/';
 
 import {
   Article,
@@ -59,6 +59,7 @@ import {
   MessageDelete,
   MessageEdit,
   MessageHide,
+  Quote,
   Reaction,
   Text,
   Tweet,
@@ -86,8 +87,8 @@ import {
 
 import {TextContentBuilder} from './TextContentBuilder';
 
+import {CryptographyService, EncryptedAsset} from '../cryptography/';
 import * as AssetCryptography from '../cryptography/AssetCryptography.node';
-import {CryptographyService, EncryptedAsset} from '../cryptography/root';
 
 import {APIClient} from '@wireapp/api-client';
 
@@ -219,7 +220,7 @@ class ConversationService {
     payloadBundle: PayloadBundleOutgoingUnsent,
     userIds?: string[]
   ): Promise<PayloadBundleOutgoing> {
-    const {originalMessageId, text, linkPreviews, mentions} = payloadBundle.content as EditedTextContent;
+    const {originalMessageId, text, linkPreviews, mentions, quote} = payloadBundle.content as EditedTextContent;
 
     const textMessage = Text.create({content: text});
 
@@ -229,6 +230,13 @@ class ConversationService {
 
     if (mentions && mentions.length) {
       textMessage.mentions = mentions.map(mention => Mention.create(mention));
+    }
+
+    if (quote) {
+      textMessage.quote = Quote.create({
+        quotedMessageId: quote.quotedMessageId,
+        quotedMessageSha256: quote.quotedMessageSha256,
+      });
     }
 
     const editedMessage = MessageEdit.create({
@@ -476,6 +484,7 @@ class ConversationService {
     };
   }
 
+  // TODO: Move this to a generic "message sending class".
   private async sendOTRMessage(
     sendingClientId: string,
     conversationId: string,
@@ -496,7 +505,8 @@ class ConversationService {
     }
   }
 
-  private async onClientMismatch(
+  // TODO: Move this to a generic "message sending class" and make it private.
+  public async onClientMismatch(
     error: AxiosError,
     message: NewOTRMessage,
     plainTextArray: Uint8Array
@@ -682,7 +692,7 @@ class ConversationService {
       state: PayloadBundleState.OUTGOING_SENT,
     };
 
-    const {text, linkPreviews, mentions} = payloadBundle.content as TextContent;
+    const {text, linkPreviews, mentions, quote} = payloadBundle.content as TextContent;
 
     const textMessage = Text.create({
       content: text,
@@ -694,6 +704,13 @@ class ConversationService {
 
     if (mentions && mentions.length) {
       textMessage.mentions = mentions.map(mention => Mention.create(mention));
+    }
+
+    if (quote) {
+      textMessage.quote = Quote.create({
+        quotedMessageId: quote.quotedMessageId,
+        quotedMessageSha256: quote.quotedMessageSha256,
+      });
     }
 
     let genericMessage = GenericMessage.create({
@@ -1081,6 +1098,10 @@ class ConversationService {
     });
   }
 
+  public getClientID(): string {
+    return this.clientID;
+  }
+
   public async addUser(conversationId: string, userId: string): Promise<string>;
   public async addUser(conversationId: string, userIds: string[]): Promise<string[]>;
   public async addUser(conversationId: string, userIds: string | string[]): Promise<string | string[]> {
@@ -1141,7 +1162,7 @@ class ConversationService {
     return this.apiClient.conversation.api.postTyping(conversationId, {status: CONVERSATION_TYPING.STOPPED});
   }
 
-  public setClientID(clientID: string) {
+  public setClientID(clientID: string): void {
     this.clientID = clientID;
   }
 
