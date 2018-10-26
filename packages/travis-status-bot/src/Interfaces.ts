@@ -17,96 +17,21 @@
  *
  */
 
+import {Result} from 'statuspage.io';
+
 interface Options {
   dataUrl?: string;
   storePath?: string;
 }
 
-interface SubscriberOptions {
-  isSubscribed: boolean;
-}
-
-interface TravisComponent {
-  components?: string[];
-  created_at: string;
-  description: string | null;
-  group_id: string | null;
-  id: string;
-  name: string;
-  page_id: string;
-  position: number;
-  showcase: boolean;
-  status: string;
-  updated_at: string;
-}
-
-interface TravisAffectedComponent {
-  code: string;
-  name: string;
-  new_status: string;
-  old_status: string;
-}
-
-interface TravisIncidentUpdate {
-  affected_components: TravisAffectedComponent[];
-  body: string;
-  custom_tweet: string | null;
-  deliver_notifications: boolean;
-  display_at: string;
-  id: string;
-  incident_id: string;
-  status: string;
-  tweet_id: number;
-  twitter_updated_at: string;
-  updated_at: string;
-  wants_twitter_update: boolean;
-}
-
-interface TravisIncident {
-  created_at: string;
-  id: string;
-  impact_override: string | null;
-  impact: string;
-  incident_updates: TravisIncidentUpdate[];
-  metadata: {};
-  monitoring_at: string | null;
-  name: string;
-  page_id: string;
-  postmortem_body_last_updated_at: string | null;
-  postmortem_body: string | null;
-  postmortem_ignored: boolean;
-  postmortem_notified_subscribers: boolean;
-  postmortem_notified_twitter: boolean;
-  postmortem_published_at: string | null;
-  resolved_at: string | null;
-  scheduled_auto_completed: boolean;
-  scheduled_auto_in_progress: boolean;
-  scheduled_for: string | null;
-  scheduled_remind_prior: boolean;
-  scheduled_reminded_at: string | null;
-  scheduled_until: string | null;
-  shortlink: string;
-  status: string;
-  updated_at: string;
+interface TravisData {
+  incidents: Result.Incident[];
+  components: Result.Component[];
 }
 
 interface TravisDataResult {
-  cachedData: TravisStatus | null;
-  newData: TravisStatus | null;
+  cachedData: TravisData | null;
+  newData: TravisData | null;
 }
 
-interface TravisStatus {
-  components: TravisComponent[];
-  incidents: TravisIncident[];
-  page: {
-    id: string;
-    name: string;
-    url: string;
-  };
-  status: {
-    indicator: string;
-    description: string;
-  };
-}
-
-export {Options, SubscriberOptions, TravisDataResult, TravisIncident, TravisStatus};
+export {Options, TravisData, TravisDataResult};

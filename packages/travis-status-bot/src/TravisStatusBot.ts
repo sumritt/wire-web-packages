@@ -23,8 +23,9 @@ import {TextContent} from '@wireapp/core/dist/conversation/content';
 import {PayloadBundleIncoming, PayloadBundleType, ReactionType} from '@wireapp/core/dist/conversation/root';
 import * as logdown from 'logdown';
 import * as moment from 'moment';
+import {Result as TravisResult} from 'statuspage.io';
 
-import {Options, TravisIncident} from './Interfaces';
+import {Options} from './Interfaces';
 import {StoreService} from './StoreService';
 import {TravisNotificationService} from './TravisNotificationService';
 
@@ -223,7 +224,7 @@ class MainHandler extends MessageHandler {
     }
   }
 
-  private async notifySubscribers(incidents: TravisIncident[], reason?: string): Promise<void> {
+  private async notifySubscribers(incidents: TravisResult.Incident[], reason?: string): Promise<void> {
     for (const id in incidents) {
       const incident = incidents[id];
       const impactText = incident.impact && incident.impact !== 'none' ? ` (${incident.impact} impact)` : '';

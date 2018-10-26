@@ -6,13 +6,13 @@
     "@wireapp/api-client": "1.16.10",
     "@wireapp/bot-api": "1.2.2",
     "@wireapp/store-engine": "0.12.26",
-    "axios": "0.18.0",
     "commander": "2.19.0",
     "cron": "1.4.1",
     "cross-env": "5.2.0",
     "dotenv": "6.1.0",
     "logdown": "3.2.7",
-    "moment": "2.22.2"
+    "moment": "2.22.2",
+    "statuspage.io": "1.0.0"
   },
   "description": "A Travis status bot.",
   "devDependencies": {

@@ -1477,6 +1477,11 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.0.tgz#ea6dcbddbc5b584c83f06c60e82736d8fbb0c235"
   integrity sha512-3TUHC3jsBAB7qVRGxT6lWyYo2v96BMmD2PTcl47H25Lu7UXtFH/2qqmKiVrnel6Ne//0TFYf6uvNX+HW2FRkLQ==
 
+"@types/node@10.11.2":
+  version "10.11.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.11.2.tgz#59508b88ce90fe2742f7b8414c6f5db3e359570d"
+  integrity sha512-XubfQDIg88PGJ7netQPf3QOKHF7Xht4WXGtg5W7cGBeQs9ETbYKwfchR9o+tRRA9iLTQ7nAre85M205JbYsjJA==
+
 "@types/node@10.11.7":
   version "10.11.7"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.11.7.tgz#0e75ca9357d646ca754016ca1d68a127ad7e7300"
@@ -10336,6 +10341,14 @@ statuses@~1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.4.0.tgz#bb73d446da2796106efcc1b601a253d6c46bd087"
   integrity sha512-zhSCtt8v2NDrRlPQpCNtw/heZLtfUDqxBM1udqikb/Hbk52LK4nQSwr10u77iopCW5LsyHpuXS0GnEc48mLeew==
+
+statuspage.io@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/statuspage.io/-/statuspage.io-1.0.0.tgz#3acb92b3e49b131502eb4bcf7e4a3e79661b97b9"
+  integrity sha512-XmUg/dcdsQARPhwQIrIbJrhYW8xqkCsQKV2bCYJ/t5NIt70f7il08hDJkcavqs/h7sgxwNSbB4kVag8/A6bhUw==
+  dependencies:
+    "@types/node" "10.11.2"
+    axios "0.18.0"
 
 stream-browserify@^2.0.1:
   version "2.0.1"

@@ -17,29 +17,29 @@
  *
  */
 
-import axios from 'axios';
 import {CronJob} from 'cron';
 import * as logdown from 'logdown';
+import {Result as TravisResult, StatusPage} from 'statuspage.io';
 
-import {TravisDataResult, TravisIncident, TravisStatus} from './Interfaces';
+import {TravisData, TravisDataResult} from './Interfaces';
 import {StoreService} from './StoreService';
-
-const defaultDataUrl = 'https://www.traviscistatus.com/index.json';
 
 class TravisNotificationService {
   private readonly logger: logdown.Logger;
   private readonly DATA_URL: string;
   private readonly storeService: StoreService;
-  private readonly notifySubscribers: ((incidents: TravisIncident[], reason?: string) => Promise<void>);
+  private readonly notifySubscribers: ((incidents: TravisResult.Incident[], reason?: string) => Promise<void>);
+  private readonly statusPageAPI: StatusPage;
 
   constructor(
     storeService: StoreService,
-    notifySubscribers: ((incidents: TravisIncident[]) => Promise<void>),
+    notifySubscribers: ((incidents: TravisResult.Incident[]) => Promise<void>),
     dataUrl?: string
   ) {
+    this.DATA_URL = dataUrl || 'https://www.traviscistatus.com';
     this.storeService = storeService;
     this.notifySubscribers = notifySubscribers;
-    this.DATA_URL = dataUrl || defaultDataUrl;
+    this.statusPageAPI = new StatusPage(this.DATA_URL);
 
     this.logger = logdown('@wireapp/travis-status-bot/TravisNotificationService', {
       logger: console,
@@ -56,7 +56,7 @@ class TravisNotificationService {
     this.logger.info(`Initialized cron updater job with time: "${cronJobTime}".`);
   }
 
-  public async getStatus(): Promise<TravisStatus | null> {
+  public async getStatus(): Promise<TravisData | null> {
     const {cachedData, newData} = await this.updateData('Status request');
 
     if (!newData) {
@@ -67,7 +67,7 @@ class TravisNotificationService {
     return newData;
   }
 
-  private getNewIncidents(cachedData: TravisStatus, receivedData: TravisStatus): TravisIncident[] | null {
+  private getNewIncidents(cachedData: TravisData, receivedData: TravisData): TravisResult.Incident[] | null {
     const cachedIncidents = cachedData.incidents;
     const receivedIncidents = receivedData.incidents;
 
@@ -96,7 +96,7 @@ class TravisNotificationService {
 
     await this.storeService.saveDataToCache(jsonData);
 
-    let newIncidents: TravisIncident[] | null = null;
+    let newIncidents: TravisResult.Incident[] | null = null;
 
     if (cachedData) {
       newIncidents = this.getNewIncidents(cachedData, jsonData);
@@ -115,13 +115,14 @@ class TravisNotificationService {
     return {newData: jsonData, cachedData};
   }
 
-  private async requestJSONData(): Promise<TravisStatus | null> {
+  private async requestJSONData(): Promise<TravisData | null> {
     try {
-      const {data} = await axios.get<TravisStatus>(this.DATA_URL);
+      const {incidents} = await this.statusPageAPI.api.incidents.getAll();
+      const {components} = await this.statusPageAPI.api.getComponents();
       this.logger.info(
-        `Received ${data.incidents.length} incidents and ${data.components.length} components from "${this.DATA_URL}".`
+        `Received ${incidents.length} incidents and ${components.length} components from "${this.DATA_URL}".`
       );
-      return data;
+      return {incidents, components};
     } catch (error) {
       this.logger.error(`Request to "${error.config.url}" failed with status code "${error.response.status}".`);
       return null;
