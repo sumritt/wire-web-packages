@@ -22,7 +22,7 @@ import {FileEngine} from '@wireapp/store-engine/dist/commonjs/engine';
 import * as logdown from 'logdown';
 import * as path from 'path';
 
-import {SubscriberOptions, TravisStatus} from './Interfaces';
+import {SubscriberOptions, TravisData} from './Interfaces';
 
 const defaultStorePath = path.join(__dirname, '.temp');
 
@@ -44,7 +44,7 @@ class StoreService {
     this.logger.state.isEnabled = true;
   }
 
-  public async saveDataToCache(data: TravisStatus): Promise<void> {
+  public async saveDataToCache(data: TravisData): Promise<void> {
     try {
       await this.storeEngine.updateOrCreate(this.TABLE_NAME_Data, 'full', data);
     } catch (error) {
@@ -52,9 +52,9 @@ class StoreService {
     }
   }
 
-  public async loadDataFromCache(): Promise<TravisStatus | null> {
+  public async loadDataFromCache(): Promise<TravisData | null> {
     try {
-      const data = await this.storeEngine.read<TravisStatus>(this.TABLE_NAME_Data, 'full');
+      const data = await this.storeEngine.read<TravisData>(this.TABLE_NAME_Data, 'full');
       return data;
     } catch (error) {
       const recordNotFound =

@@ -19,19 +19,21 @@
 
 import {Result} from 'statuspage.io';
 
-interface Options {
+export interface Options {
   dataUrl?: string;
   storePath?: string;
 }
 
-interface TravisData {
+export interface SubscriberOptions {
+  isSubscribed: boolean;
+}
+
+export interface TravisData {
   incidents: Result.Incident[];
   components: Result.Component[];
 }
 
-interface TravisDataResult {
+export interface TravisDataResult {
   cachedData: TravisData | null;
   newData: TravisData | null;
 }
-
-export {Options, TravisData, TravisDataResult};
