@@ -18,7 +18,7 @@
  *
  */
 
-const {PriorityQueue} = require('@wireapp/priority-queue');
+const {PriorityQueue, Priority} = require('@wireapp/priority-queue');
 
 beforeAll(() => (jasmine.DEFAULT_TIMEOUT_INTERVAL = 5000));
 
@@ -140,6 +140,32 @@ describe('PriorityQueue', () => {
       queue.delete('delete-me');
 
       expect(queue.all.length).toBe(3);
+    });
+
+    fit('cancels the Promise which has been deleted', done => {
+      const PROMISE_IDENTIFIER = 'YouNeedToDeleteMe';
+      const TIME_TO_WAIT_FOR_PROMISE = 200;
+      const TIME_TO_WAIT_FOR_TEST_END = TIME_TO_WAIT_FOR_PROMISE * 2;
+
+      queue = new PriorityQueue();
+      expect(queue.size).toBe(0);
+
+      const delayedPromise = new Promise(() =>
+        setTimeout(() => {
+          // If Promise does not get canceled in time, it will fail the test.
+          const syntheticError = new Error('I will fail the test because I did not get canceled.');
+          done.fail(syntheticError);
+        }, TIME_TO_WAIT_FOR_PROMISE)
+      );
+
+      queue.add(delayedPromise, Priority.MEDIUM, PROMISE_IDENTIFIER);
+      expect(queue.size).toBe(1);
+
+      queue.delete(PROMISE_IDENTIFIER);
+      expect(queue.size).toBe(0);
+      // TODO: Promise needs to get canceled which doesn't work atm.
+
+      setTimeout(() => done(), TIME_TO_WAIT_FOR_TEST_END);
     });
   });
 
