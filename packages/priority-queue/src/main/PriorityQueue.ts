@@ -17,11 +17,16 @@
  *
  */
 
+import * as Promise from 'bluebird';
 import Config from './Config';
 import Item from './Item';
 import Priority from './Priority';
 
-export default class PriorityQueue {
+Promise.config({
+  cancellation: true,
+});
+
+class PriorityQueue {
   private readonly config: Config = {
     comparator: (a: Item, b: Item): Priority => {
       if (a.priority === b.priority) {
@@ -44,12 +49,19 @@ export default class PriorityQueue {
       thunkedPromise = () => thunkedPromise;
     }
 
-    return new Promise((resolve, reject) => {
+    const cancellablePromise = new Promise((resolve, reject) => {
       const queueObject = new Item();
       queueObject.fn = thunkedPromise;
       queueObject.label = label;
       queueObject.priority = priority;
-      queueObject.reject = reject;
+      queueObject.reject = (...args: any[]) => {
+        if (cancellablePromise.isCancelled()) {
+          console.warn('TODO: Stop execution of thunked Promise.');
+          return;
+        } else {
+          reject(...args);
+        }
+      };
       queueObject.resolve = resolve;
       queueObject.retry = Number(this.config.maxRetries) >= 0 ? Number(this.config.maxRetries) : queueObject.retry;
       queueObject.timestamp = Date.now() + this.size;
@@ -57,10 +69,19 @@ export default class PriorityQueue {
       this.queue.sort(this.config.comparator);
       this.run();
     });
+
+    return cancellablePromise;
   }
 
   public delete(label: string): void {
-    this.queue = this.queue.filter(item => item.label !== label);
+    this.queue = this.queue.filter(item => {
+      if (item.label !== label) {
+        return true;
+      } else {
+        item.reject();
+        return false;
+      }
+    });
   }
 
   public deleteAll(): void {
@@ -135,3 +156,5 @@ export default class PriorityQueue {
       .join('\r\n');
   }
 }
+
+export default PriorityQueue;

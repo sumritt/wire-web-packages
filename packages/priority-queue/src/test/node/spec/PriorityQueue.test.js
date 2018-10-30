@@ -158,12 +158,13 @@ describe('PriorityQueue', () => {
         }, TIME_TO_WAIT_FOR_PROMISE)
       );
 
-      queue.add(delayedPromise, Priority.MEDIUM, PROMISE_IDENTIFIER);
+      const cancellablePromise = queue.add(delayedPromise, Priority.MEDIUM, PROMISE_IDENTIFIER);
       expect(queue.size).toBe(1);
 
+      // TODO: Promise needs to get automatically canceled when calling "delete"
+      cancellablePromise.cancel();
       queue.delete(PROMISE_IDENTIFIER);
       expect(queue.size).toBe(0);
-      // TODO: Promise needs to get canceled which doesn't work atm.
 
       setTimeout(() => done(), TIME_TO_WAIT_FOR_TEST_END);
     });
