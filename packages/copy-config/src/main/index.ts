@@ -1,6 +1,6 @@
 /*
  * Wire
- * Copyright (C) 2018 Wire Swiss GmbH
+ * Copyright (C) 2019 Wire Swiss GmbH
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,11 +17,5 @@
  *
  */
 
-const {base64MD5FromBuffer} = require('../../../../dist/commonjs/shims/node/buffer');
-
-describe('"base64MD5FromBuffer"', () => {
-  it('can generate base64 encoded md5 hash from buffer', () => {
-    const size = 8;
-    expect(base64MD5FromBuffer(new Uint8Array([size, size]))).toBe('w+7NCDwPSCf1JgWbA7deTA==');
-  });
-});
+export * from './CopyConfig';
+export * from './CopyConfigOptions';

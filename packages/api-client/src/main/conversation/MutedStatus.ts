@@ -17,11 +17,12 @@
  *
  */
 
-const {base64MD5FromBuffer} = require('@wireapp/api-client/dist/commonjs/shims/node/buffer');
+/* tslint:disable:object-literal-sort-keys */
+enum MutedStatus {
+  ALL_NOTIFICATIONS = 0b00,
+  ONLY_MENTIONS = 0b01,
+  NO_NOTIFICATIONS = 0b11,
+}
+/* tslint:enable:object-literal-sort-keys */
 
-describe('"base64MD5FromBuffer"', () => {
-  it('can generate base64 encoded md5 hash from buffer', () => {
-    const size = 8;
-    expect(base64MD5FromBuffer(new Uint8Array([size, size]))).toBe('w+7NCDwPSCf1JgWbA7deTA==');
-  });
-});
+export {MutedStatus};

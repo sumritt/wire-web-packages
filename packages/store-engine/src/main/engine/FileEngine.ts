@@ -1,3 +1,22 @@
+/*
+ * Wire
+ * Copyright (C) 2018 Wire Swiss GmbH
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see http://www.gnu.org/licenses/.
+ *
+ */
+
 import * as fs from 'fs-extra';
 import * as path from 'path';
 import CRUDEngine from './CRUDEngine';
@@ -15,6 +34,7 @@ export default class FileEngine implements CRUDEngine {
   private options: {fileExtension: string} = {
     fileExtension: '.dat',
   };
+  // Using a reference to Node.js' "path" module to influence the platform-specific behaviour in our tests
   private static readonly path = path;
 
   constructor(private readonly baseDirectory = './') {}
@@ -26,14 +46,15 @@ export default class FileEngine implements CRUDEngine {
     }
   }
 
-  public async init(storeName = '', options?: {fileExtension: string}): Promise<any> {
+  public async init(storeName = '', options?: {fileExtension: string}): Promise<string> {
     await this.isSupported();
 
     FileEngine.enforcePathRestrictions(this.baseDirectory, storeName);
     this.storeName = FileEngine.path.resolve(this.baseDirectory, storeName);
+    await fs.ensureDir(this.storeName);
 
     this.options = {...this.options, ...options};
-    return Promise.resolve(storeName);
+    return Promise.resolve(this.storeName);
   }
 
   public purge(): Promise<void> {

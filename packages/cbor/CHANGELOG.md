@@ -3,6 +3,174 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.117](https://github.com/wireapp/wire-web-packages/tree/master/packages/cbor/compare/@wireapp/cbor@3.0.116...@wireapp/cbor@3.0.117) (2019-01-29)
+
+**Note:** Version bump only for package @wireapp/cbor
+
+
+
+
+
+## [3.0.116](https://github.com/wireapp/wire-web-packages/tree/master/packages/cbor/compare/@wireapp/cbor@3.0.115...@wireapp/cbor@3.0.116) (2019-01-24)
+
+**Note:** Version bump only for package @wireapp/cbor
+
+
+
+
+
+## [3.0.115](https://github.com/wireapp/wire-web-packages/tree/master/packages/cbor/compare/@wireapp/cbor@3.0.114...@wireapp/cbor@3.0.115) (2019-01-17)
+
+**Note:** Version bump only for package @wireapp/cbor
+
+
+
+
+
+## [3.0.114](https://github.com/wireapp/wire-web-packages/tree/master/packages/cbor/compare/@wireapp/cbor@3.0.113...@wireapp/cbor@3.0.114) (2019-01-03)
+
+**Note:** Version bump only for package @wireapp/cbor
+
+
+
+
+
+## [3.0.113](https://github.com/wireapp/wire-web-packages/tree/master/packages/cbor/compare/@wireapp/cbor@3.0.112...@wireapp/cbor@3.0.113) (2019-01-03)
+
+**Note:** Version bump only for package @wireapp/cbor
+
+
+
+
+
+## [3.0.112](https://github.com/wireapp/wire-web-packages/tree/master/packages/cbor/compare/@wireapp/cbor@3.0.111...@wireapp/cbor@3.0.112) (2019-01-02)
+
+**Note:** Version bump only for package @wireapp/cbor
+
+
+
+
+
+## [3.0.111](https://github.com/wireapp/wire-web-packages/tree/master/packages/cbor/compare/@wireapp/cbor@3.0.110...@wireapp/cbor@3.0.111) (2018-12-21)
+
+**Note:** Version bump only for package @wireapp/cbor
+
+
+
+
+
+## [3.0.110](https://github.com/wireapp/wire-web-packages/tree/master/packages/cbor/compare/@wireapp/cbor@3.0.109...@wireapp/cbor@3.0.110) (2018-12-20)
+
+**Note:** Version bump only for package @wireapp/cbor
+
+
+
+
+
+## [3.0.109](https://github.com/wireapp/wire-web-packages/tree/master/packages/cbor/compare/@wireapp/cbor@3.0.108...@wireapp/cbor@3.0.109) (2018-12-17)
+
+**Note:** Version bump only for package @wireapp/cbor
+
+
+
+
+
+## [3.0.108](https://github.com/wireapp/wire-web-packages/tree/master/packages/cbor/compare/@wireapp/cbor@3.0.107...@wireapp/cbor@3.0.108) (2018-12-06)
+
+**Note:** Version bump only for package @wireapp/cbor
+
+
+
+
+
+## [3.0.107](https://github.com/wireapp/wire-web-packages/tree/master/packages/cbor/compare/@wireapp/cbor@3.0.106...@wireapp/cbor@3.0.107) (2018-11-26)
+
+**Note:** Version bump only for package @wireapp/cbor
+
+
+
+
+
+## [3.0.106](https://github.com/wireapp/wire-web-packages/tree/master/packages/cbor/compare/@wireapp/cbor@3.0.105...@wireapp/cbor@3.0.106) (2018-11-22)
+
+**Note:** Version bump only for package @wireapp/cbor
+
+
+
+
+
+## [3.0.105](https://github.com/wireapp/wire-web-packages/tree/master/packages/cbor/compare/@wireapp/cbor@3.0.104...@wireapp/cbor@3.0.105) (2018-11-20)
+
+**Note:** Version bump only for package @wireapp/cbor
+
+
+
+
+
+## [3.0.104](https://github.com/wireapp/wire-web-packages/tree/master/packages/cbor/compare/@wireapp/cbor@3.0.103...@wireapp/cbor@3.0.104) (2018-11-16)
+
+**Note:** Version bump only for package @wireapp/cbor
+
+
+
+
+
+## [3.0.103](https://github.com/wireapp/wire-web-packages/tree/master/packages/cbor/compare/@wireapp/cbor@3.0.102...@wireapp/cbor@3.0.103) (2018-11-15)
+
+**Note:** Version bump only for package @wireapp/cbor
+
+
+
+
+
+## [3.0.102](https://github.com/wireapp/wire-web-packages/tree/master/packages/cbor/compare/@wireapp/cbor@3.0.101...@wireapp/cbor@3.0.102) (2018-11-15)
+
+**Note:** Version bump only for package @wireapp/cbor
+
+
+
+
+
+## [3.0.101](https://github.com/wireapp/wire-web-packages/tree/master/packages/cbor/compare/@wireapp/cbor@3.0.100...@wireapp/cbor@3.0.101) (2018-11-12)
+
+**Note:** Version bump only for package @wireapp/cbor
+
+
+
+
+
+## [3.0.100](https://github.com/wireapp/wire-web-packages/tree/master/packages/cbor/compare/@wireapp/cbor@3.0.99...@wireapp/cbor@3.0.100) (2018-11-08)
+
+**Note:** Version bump only for package @wireapp/cbor
+
+
+
+
+
+## [3.0.99](https://github.com/wireapp/wire-web-packages/tree/master/packages/cbor/compare/@wireapp/cbor@3.0.98...@wireapp/cbor@3.0.99) (2018-11-07)
+
+**Note:** Version bump only for package @wireapp/cbor
+
+
+
+
+
+## [3.0.98](https://github.com/wireapp/wire-web-packages/tree/master/packages/cbor/compare/@wireapp/cbor@3.0.97...@wireapp/cbor@3.0.98) (2018-11-05)
+
+**Note:** Version bump only for package @wireapp/cbor
+
+
+
+
+
+## [3.0.97](https://github.com/wireapp/wire-web-packages/tree/master/packages/cbor/compare/@wireapp/cbor@3.0.96...@wireapp/cbor@3.0.97) (2018-10-31)
+
+**Note:** Version bump only for package @wireapp/cbor
+
+
+
+
+
 ## [3.0.96](https://github.com/wireapp/wire-web-packages/tree/master/packages/cbor/compare/@wireapp/cbor@3.0.95...@wireapp/cbor@3.0.96) (2018-10-26)
 
 **Note:** Version bump only for package @wireapp/cbor

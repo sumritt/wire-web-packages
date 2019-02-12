@@ -21,7 +21,6 @@ import {APIClient} from '@wireapp/api-client';
 import {LoginData, PreKey} from '@wireapp/api-client/dist/commonjs/auth/';
 import {ClientClassification, ClientType, NewClient, RegisteredClient} from '@wireapp/api-client/dist/commonjs/client/';
 import {CRUDEngine} from '@wireapp/store-engine/dist/commonjs/engine/';
-import * as logdown from 'logdown';
 import {CryptographyService} from '../cryptography/';
 import {ClientInfo} from './';
 import ClientBackendRepository from './ClientBackendRepository';
@@ -37,11 +36,6 @@ export interface MetaClient extends RegisteredClient {
 }
 
 export default class ClientService {
-  private readonly logger = logdown('@wireapp/core/client/ClientService', {
-    logger: console,
-    markdown: false,
-  });
-
   private readonly database: ClientDatabaseRepository;
   private readonly backend: ClientBackendRepository;
 
@@ -55,7 +49,6 @@ export default class ClientService {
   }
 
   public deleteLocalClient(): Promise<string> {
-    this.logger.log('deleteLocalClient');
     return this.database.deleteLocalClient();
   }
 
@@ -64,17 +57,14 @@ export default class ClientService {
   }
 
   public getLocalClient(): Promise<MetaClient> {
-    this.logger.log('getLocalClient');
     return this.database.getLocalClient();
   }
 
   public createLocalClient(client: RegisteredClient): Promise<MetaClient> {
-    this.logger.log('createLocalClient');
     return this.database.createLocalClient(client);
   }
 
   public async synchronizeClients(): Promise<MetaClient[]> {
-    this.logger.log('synchronizeClients');
     const registeredClients = await this.backend.getClients();
     const filteredClients = registeredClients.filter(client => client.id !== this.apiClient.context!.clientId);
     return this.database.createClientList(this.apiClient.context!.userId, filteredClients);
@@ -89,7 +79,6 @@ export default class ClientService {
       model: `${pkg.name} v${pkg.version}`,
     }
   ): Promise<RegisteredClient> {
-    this.logger.log('register');
     if (!this.apiClient.context) {
       throw new Error('Context is not set.');
     }
@@ -112,10 +101,6 @@ export default class ClientService {
         model: clientInfo.model,
         password: loginData.password ? String(loginData.password) : undefined,
         prekeys: serializedPreKeys,
-        sigkeys: {
-          enckey: 'Wuec0oJi9/q9VsgOil9Ds4uhhYwBT+CAUrvi/S9vcz0=',
-          mackey: 'Wuec0oJi9/q9VsgOil9Ds4uhhYwBT+CAUrvi/S9vcz0=',
-        },
         type: loginData.clientType,
       };
     } else {

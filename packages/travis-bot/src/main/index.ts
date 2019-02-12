@@ -25,8 +25,7 @@ import {exec} from 'child_process';
 import {promisify} from 'util';
 
 import * as Changelog from 'generate-changelog';
-
-const logdown = require('logdown');
+import * as logdown from 'logdown';
 
 const logger = logdown('@wireapp/travis-bot/TravisBot', {
   logger: console,
@@ -83,6 +82,8 @@ class TravisBot {
     const account = new Account(client);
     await account.login(this.loginData);
     await account.listen();
+
+    account.on('error', error => console.error(error));
 
     if (!conversationIds) {
       const allConversations = await client.conversation.api.getAllConversations();
