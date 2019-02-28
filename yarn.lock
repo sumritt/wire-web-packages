@@ -1615,6 +1615,11 @@
   resolved "https://registry.yarnpkg.com/@types/ansi-regex/-/ansi-regex-4.0.0.tgz#cb20bb66da7700ea9b26f16971f03f0e092eddad"
   integrity sha512-r1W316vjsZXn1/csLC4HcCJs6jIHIzksHJd7xx+Dl+PAb0S2Dh9cR8ZsIMEfGmbBtP7JNWlf2KKahSkDP6rg3g==
 
+"@types/bluebird@*":
+  version "3.5.26"
+  resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.26.tgz#a38c438ae84fa02431d6892edf86e46edcbca291"
+  integrity sha512-aj2mrBLn5ky0GmAg6IPXrQjnN0iB/ulozuJ+oZdrHRAzRbXjGmu4UXsNCjFvPbSaaPZmniocdOzsM392qLOlmQ==
+
 "@types/bro-fs@0.4.1":
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/@types/bro-fs/-/bro-fs-0.4.1.tgz#02e7e29fa94a5521631cd51317a14019312c8405"
@@ -1716,6 +1721,15 @@
   version "3.3.9"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-3.3.9.tgz#ee886a9113db567e722a8a0c37f0e6283f2cefa3"
   integrity sha512-vw3VyFPa9mlba6NZPBZC3q2Zrnkgy5xuCVI43/tTLX6umdYrYvcFtQUKi2zH3PjFZQ9XCxNM/NMrM9uk8TPOzg==
+
+"@types/karma@3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@types/karma/-/karma-3.0.2.tgz#c66654ea7167ae9fb62880ad2ef99cc18b64940d"
+  integrity sha512-xm+iMKgLSpTPo1Z7wLKbrZt8aLzA1udb9UOb9+OSDMFIufqlbp0DXQpY75EQ3ETi6EJiaohIodBlMs+UD4NSMQ==
+  dependencies:
+    "@types/bluebird" "*"
+    "@types/node" "*"
+    log4js "^3.0.0"
 
 "@types/libsodium-wrappers-sumo@0.7.1":
   version "0.7.1"
@@ -7466,6 +7480,13 @@ karma-spec-reporter@0.0.32:
   dependencies:
     colors "^1.1.2"
 
+karma-typescript-preprocessor@0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/karma-typescript-preprocessor/-/karma-typescript-preprocessor-0.4.0.tgz#49adde8ae382b23dc7e30b06494509f79eea3e25"
+  integrity sha512-QMfsfQxt1OKZ3OXHIc8oHIvs+v9kX7WruvB4vvnojCyQ2Jtg9mamCxj1UroPxbvSqvhGNhzgWAgTjVitye4UYA==
+  dependencies:
+    typescript "^3.0.3"
+
 karma@4.0.0, karma@>=0.9:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/karma/-/karma-4.0.0.tgz#f28e38a2b66243fde3f98e12a8dcaa2c6ff8ca9c"
@@ -12068,7 +12089,7 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@3.3.3333:
+typescript@3.3.3333, typescript@^3.0.3:
   version "3.3.3333"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.3.3333.tgz#171b2c5af66c59e9431199117a3bcadc66fdcfd6"
   integrity sha512-JjSKsAfuHBE/fB2oZ8NxtRTk5iGcg6hkYXMnZ3Wc+b2RSqejEqTaem11mHASMnFilHrax3sLK0GDzcJrekZYLw==
